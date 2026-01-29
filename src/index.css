@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Interview Platform Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 6%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 175 70% 45%;
+    --primary-foreground: 220 20% 6%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 15% 75%;
+
+    --muted: 220 15% 12%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 175 70% 45%;
+    --accent-foreground: 220 20% 6%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 175 70% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --voice-glow: 175 70% 45%;
+    --voice-pulse: 175 60% 35%;
+    --surface-elevated: 220 18% 12%;
+    --text-primary: 210 20% 98%;
+    --text-secondary: 215 15% 65%;
+    --text-muted: 215 12% 45%;
+  }
+
+  .dark {
+    --background: 220 20% 6%;
+    --foreground: 210 20% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Voice Agent Container Styles */
+  .voice-container {
+    @apply relative rounded-2xl border border-border bg-card overflow-hidden;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--surface-elevated)) 100%
+    );
+  }
+
+  .voice-container::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--primary) / 0.2) 0%,
+      transparent 50%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Voice pulse animation */
+  .voice-pulse {
+    @apply absolute rounded-full;
+    background: radial-gradient(
+      circle,
+      hsl(var(--primary) / 0.4) 0%,
+      transparent 70%
+    );
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 0.3;
+    }
+  }
+
+  /* Step card styles */
+  .step-card {
+    @apply relative p-6 rounded-xl border border-border bg-card/50 transition-all duration-300;
+  }
+
+  .step-card:hover {
+    @apply border-primary/30 bg-card;
+  }
+
+  .step-number {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-lg text-sm font-semibold;
+    background: hsl(var(--primary) / 0.15);
+    color: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--muted-foreground)) 100%
+    );
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(175 50% 60%) 100%
+    );
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.15),
+                0 0 80px hsl(var(--primary) / 0.1);
+  }
+}
+@layer components {
+  /* This is for your LinkedIn Demo Recording */
+  .ai-pulse-ring {
+    @apply relative flex h-20 w-20 items-center justify-center;
+  }
+
+  .ai-pulse-ring::before {
+    content: '';
+    @apply absolute h-full w-full rounded-full;
+    background-color: hsl(var(--primary));
+    animation: pulse-ring-vibe 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+
+  @keyframes pulse-ring-vibe {
+    0% { transform: scale(.33); opacity: 0.8; }
+    80%, 100% { transform: scale(1.5); opacity: 0; }
+  }
+}
