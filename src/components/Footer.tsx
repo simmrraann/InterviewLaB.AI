@@ -7,7 +7,7 @@ const Footer = () => {
             <span className="text-primary-foreground font-bold text-xs">N</span>
           </div>
           <span className="text-sm text-muted-foreground">
-            Nimrobo Voice Interview Platform
+            InterviewLaB.AI Voice Interview Platform
           </span>
         </div>
         
@@ -19,7 +19,7 @@ const Footer = () => {
             Terms
           </a>
           <span className="text-xs text-muted-foreground">
-            © 2024 Nimrobo
+            © 2026 InterviewLaB.AI
           </span>
         </div>
       </div>
